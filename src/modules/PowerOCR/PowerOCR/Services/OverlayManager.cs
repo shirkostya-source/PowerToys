@@ -454,6 +454,17 @@ internal sealed partial class OverlayManager : IOverlayManager
             }
         }
 
+        // Prefer Russian OCR when it is installed
+        var russianLanguage = viewModel.Languages.FirstOrDefault(
+            l => l.LanguageTag.Equals("ru", StringComparison.OrdinalIgnoreCase)
+                || l.LanguageTag.StartsWith("ru-", StringComparison.OrdinalIgnoreCase));
+
+        if (russianLanguage is not null)
+        {
+            viewModel.SelectedLanguage = russianLanguage;
+            return;
+        }
+
         // Fallback to current input language
         string inputTag = Language.CurrentInputMethodLanguageTag;
         if (!string.IsNullOrEmpty(inputTag))

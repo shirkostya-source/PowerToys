@@ -70,7 +70,7 @@ public partial class App : Application, IDisposable
 
         // Core services from Tasks 1-2
         services.AddSingleton<IBitmapPreprocessor, BitmapPreprocessor>();
-        services.AddSingleton<IOcrRecognizer, WindowsOcrRecognizer>();
+        services.AddSingleton<IOcrRecognizer, HybridOcrRecognizer>();
         services.AddSingleton<ITextExtractorService, TextExtractorService>();
 
         // App-level services
